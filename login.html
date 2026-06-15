@@ -1,25 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login — Project Name</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — Bookshelf</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/login.css" />
 </head>
-<body>
+<body class="login-page">
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__logo">📚 Bookshelf</a>
+      <nav class="site-nav">
+        <a href="index.html" class="site-nav__link">Search</a>
+        <a href="shelves.html" class="site-nav__link">My Shelves</a>
+        <a href="profile.html" class="site-nav__link">Profile</a>
+        <a href="login.html" class="site-nav__link site-nav__link--active">Sign in</a>
+      </nav>
+    </div>
+  </header>
 
-  <main>
+  <main class="main login-main">
+    <div class="login-card">
+      <div class="login-card__header">
+        <span class="login-card__icon">📚</span>
+        <h1 class="login-card__title">Welcome back</h1>
+        <p class="login-card__subtitle">Sign in to access your shelves and reading progress.</p>
+      </div>
 
-    <form id="login-form">
-      <!-- input type="text" with validation attributes -->
-      <label for="name-input">Your name</label>
-      <input id="name-input" type="text" name="name" required minlength="2" autocomplete="name">
+      <div class="login-tabs" role="tablist">
+        <button class="login-tab login-tab--active" data-tab="signin" role="tab" aria-selected="true">Sign in</button>
+        <button class="login-tab" data-tab="register" role="tab" aria-selected="false">Register</button>
+      </div>
 
-      <p id="login-error" hidden></p>
+      <form class="login-form" id="signin-form" novalidate>
+        <div class="login-form__group">
+          <label for="signin-email" class="login-form__label">Email</label>
+          <input
+            type="email"
+            id="signin-email"
+            name="email"
+            class="login-form__input"
+            placeholder="you@example.com"
+            required
+            autocomplete="email"
+          />
+          <span class="login-form__error" id="signin-email-error"></span>
+        </div>
 
-      <button type="submit">Start →</button>
-    </form>
+        <div class="login-form__group">
+          <label for="signin-password" class="login-form__label">
+            Password
+            <a href="#" class="login-form__forgot" id="forgot-link">Forgot password?</a>
+          </label>
+          <div class="login-form__password-wrap">
+            <input
+              type="password"
+              id="signin-password"
+              name="password"
+              class="login-form__input"
+              placeholder="••••••••"
+              minlength="6"
+              required
+              autocomplete="current-password"
+            />
+            <button type="button" class="login-form__toggle-pw" id="toggle-signin-pw" aria-label="Show password">
+              👁
+            </button>
+          </div>
+          <span class="login-form__error" id="signin-password-error"></span>
+        </div>
 
+        <label class="login-form__checkbox-label">
+          <input type="checkbox" id="signin-remember" name="remember" class="login-form__checkbox" />
+          Remember me
+        </label>
+
+        <button type="submit" class="btn btn--primary login-form__submit">Sign in</button>
+
+        <div class="login-form__feedback" id="signin-feedback" hidden></div>
+      </form>
+
+      <form class="login-form" id="register-form" novalidate hidden>
+        <div class="login-form__group">
+          <label for="reg-name" class="login-form__label">Display name <span class="required">*</span></label>
+          <input
+            type="text"
+            id="reg-name"
+            name="name"
+            class="login-form__input"
+            placeholder="Your name"
+            minlength="2"
+            maxlength="40"
+            required
+            autocomplete="name"
+          />
+          <span class="login-form__error" id="reg-name-error"></span>
+        </div>
+
+        <div class="login-form__group">
+          <label for="reg-email" class="login-form__label">Email <span class="required">*</span></label>
+          <input
+            type="email"
+            id="reg-email"
+            name="email"
+            class="login-form__input"
+            placeholder="you@example.com"
+            required
+            autocomplete="email"
+          />
+          <span class="login-form__error" id="reg-email-error"></span>
+        </div>
+
+        <div class="login-form__group">
+          <label for="reg-password" class="login-form__label">Password <span class="required">*</span></label>
+          <div class="login-form__password-wrap">
+            <input
+              type="password"
+              id="reg-password"
+              name="password"
+              class="login-form__input"
+              placeholder="At least 6 characters"
+              minlength="6"
+              required
+              autocomplete="new-password"
+            />
+            <button type="button" class="login-form__toggle-pw" id="toggle-reg-pw" aria-label="Show password">
+              👁
+            </button>
+          </div>
+          <span class="login-form__error" id="reg-password-error"></span>
+        </div>
+
+        <div class="login-form__group">
+          <label for="reg-confirm" class="login-form__label">Confirm password <span class="required">*</span></label>
+          <input
+            type="password"
+            id="reg-confirm"
+            name="confirm"
+            class="login-form__input"
+            placeholder="Repeat your password"
+            minlength="6"
+            required
+            autocomplete="new-password"
+          />
+          <span class="login-form__error" id="reg-confirm-error"></span>
+        </div>
+
+        <div class="login-form__group">
+          <label for="reg-dob" class="login-form__label">Date of birth</label>
+          <input
+            type="date"
+            id="reg-dob"
+            name="dob"
+            class="login-form__input"
+          />
+        </div>
+
+        <label class="login-form__checkbox-label">
+          <input type="checkbox" id="reg-terms" name="terms" class="login-form__checkbox" required />
+          I agree to the <a href="#" class="login-form__link">Terms of Service</a>
+        </label>
+        <span class="login-form__error" id="reg-terms-error"></span>
+
+        <button type="submit" class="btn btn--primary login-form__submit">Create account</button>
+
+        <div class="login-form__feedback" id="register-feedback" hidden></div>
+      </form>
+
+      <div class="forgot-panel" id="forgot-panel" hidden>
+        <button class="forgot-panel__back" id="forgot-back">← Back to sign in</button>
+        <h2 class="forgot-panel__title">Reset password</h2>
+        <p class="forgot-panel__desc">Enter your email and we'll send you a reset link.</p>
+        <form class="login-form" id="forgot-form" novalidate>
+          <div class="login-form__group">
+            <label for="forgot-email" class="login-form__label">Email</label>
+            <input
+              type="email"
+              id="forgot-email"
+              name="email"
+              class="login-form__input"
+              placeholder="you@example.com"
+              required
+            />
+            <span class="login-form__error" id="forgot-email-error"></span>
+          </div>
+          <button type="submit" class="btn btn--primary login-form__submit">Send reset link</button>
+          <div class="login-form__feedback" id="forgot-feedback" hidden></div>
+        </form>
+      </div>
+
+    </div>
+
+    <div class="logged-in-card" id="logged-in-card" hidden>
+      <span class="logged-in-card__avatar" id="li-avatar">?</span>
+      <h2 class="logged-in-card__title">You're signed in!</h2>
+      <p class="logged-in-card__name" id="li-name"></p>
+      <p class="logged-in-card__email" id="li-email"></p>
+      <div class="logged-in-card__actions">
+        <a href="shelves.html" class="btn btn--primary">Go to my shelves</a>
+        <button type="button" class="btn btn--ghost" id="signout-btn">Sign out</button>
+      </div>
+    </div>
   </main>
 
   <script type="module" src="js/login.js"></script>

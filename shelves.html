@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Shelves — Bookshelf</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/shelves.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__logo">📚 Bookshelf</a>
+      <nav class="site-nav">
+        <a href="index.html" class="site-nav__link">Search</a>
+        <a href="shelves.html" class="site-nav__link site-nav__link--active">My Shelves</a>
+        <a href="profile.html" class="site-nav__link">Profile</a>
+         <a href="login.html" class="site-nav__link">Sign in</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="shelves-hero">
+      <h1 class="shelves-hero__title">My Shelves</h1>
+      <p class="shelves-hero__subtitle">Track every book you want to read, are reading, or have finished.</p>
+      <div class="shelf-stats" id="shelf-stats">
+        <div class="shelf-stat">
+          <span class="shelf-stat__num" id="stat-want">0</span>
+          <span class="shelf-stat__label">Want to read</span>
+        </div>
+        <div class="shelf-stat">
+          <span class="shelf-stat__num" id="stat-reading">0</span>
+          <span class="shelf-stat__label">Reading</span>
+        </div>
+        <div class="shelf-stat">
+          <span class="shelf-stat__num" id="stat-finished">0</span>
+          <span class="shelf-stat__label">Finished</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="shelf-controls">
+      <div class="shelf-tabs" id="shelf-tabs" role="tablist">
+        <button class="shelf-tab shelf-tab--active" data-shelf="want" role="tab" aria-selected="true">Want to read</button>
+        <button class="shelf-tab" data-shelf="reading" role="tab" aria-selected="false">Reading</button>
+        <button class="shelf-tab" data-shelf="finished" role="tab" aria-selected="false">Finished</button>
+      </div>
+      <div class="shelf-filter">
+        <label for="shelf-search" class="sr-only">Filter shelf</label>
+        <input type="text" id="shelf-search" class="shelf-filter__input" placeholder="Filter by title or author…" />
+      </div>
+    </section>
+
+    <section class="shelf-content" id="shelf-content" aria-live="polite">
+      <div class="book-grid" id="shelf-grid"></div>
+      <div class="shelf-empty" id="shelf-empty" hidden>
+        <p class="shelf-empty__msg">No books here yet. <a href="index.html">Search for books</a> to add them.</p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="js/shelves.js"></script>
+</body>
+</html>

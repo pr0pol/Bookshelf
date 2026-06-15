@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile — Bookshelf</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/profile.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__logo">📚 Bookshelf</a>
+      <nav class="site-nav">
+        <a href="index.html" class="site-nav__link">Search</a>
+        <a href="shelves.html" class="site-nav__link">My Shelves</a>
+        <a href="profile.html" class="site-nav__link site-nav__link--active">Profile</a>
+         <a href="login.html" class="site-nav__link">Sign in</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="profile-hero">
+      <div class="profile-avatar" id="profile-avatar">?</div>
+      <div class="profile-hero__info">
+        <h1 class="profile-hero__name" id="profile-name-display">Reader</h1>
+        <p class="profile-hero__bio" id="profile-bio-display">No bio yet.</p>
+      </div>
+    </section>
+
+    <section class="profile-section">
+      <h2 class="profile-section__title">Edit profile</h2>
+
+      <form class="profile-form" id="profile-form" novalidate>
+        <div class="profile-form__group">
+          <label for="pf-name" class="profile-form__label">Display name <span class="required">*</span></label>
+          <input
+            type="text"
+            id="pf-name"
+            name="name"
+            class="profile-form__input"
+            placeholder="Your name"
+            minlength="2"
+            maxlength="40"
+            required
+          />
+          <span class="profile-form__error" id="pf-name-error"></span>
+        </div>
+
+        <div class="profile-form__group">
+          <label for="pf-email" class="profile-form__label">Email <span class="required">*</span></label>
+          <input
+            type="email"
+            id="pf-email"
+            name="email"
+            class="profile-form__input"
+            placeholder="you@example.com"
+            required
+          />
+          <span class="profile-form__error" id="pf-email-error"></span>
+        </div>
+
+        <div class="profile-form__group">
+          <label for="pf-bio" class="profile-form__label">Bio</label>
+          <textarea
+            id="pf-bio"
+            name="bio"
+            class="profile-form__textarea"
+            placeholder="Tell other readers a bit about yourself…"
+            maxlength="200"
+            rows="3"
+          ></textarea>
+          <span class="profile-form__hint" id="pf-bio-count">0 / 200</span>
+        </div>
+
+        <div class="profile-form__group">
+          <label class="profile-form__label">Favourite genres</label>
+          <div class="profile-form__checkboxes">
+            <label class="profile-form__checkbox-label"><input type="checkbox" name="genre" value="fiction" /> Fiction</label>
+            <label class="profile-form__checkbox-label"><input type="checkbox" name="genre" value="non-fiction" /> Non-fiction</label>
+            <label class="profile-form__checkbox-label"><input type="checkbox" name="genre" value="sci-fi" /> Sci-fi</label>
+            <label class="profile-form__checkbox-label"><input type="checkbox" name="genre" value="fantasy" /> Fantasy</label>
+            <label class="profile-form__checkbox-label"><input type="checkbox" name="genre" value="mystery" /> Mystery</label>
+            <label class="profile-form__checkbox-label"><input type="checkbox" name="genre" value="biography" /> Biography</label>
+          </div>
+        </div>
+
+        <div class="profile-form__group">
+          <label for="pf-reading-goal" class="profile-form__label">Reading goal (books per year)</label>
+          <input
+            type="number"
+            id="pf-reading-goal"
+            name="reading_goal"
+            class="profile-form__input profile-form__input--narrow"
+            min="1"
+            max="365"
+            placeholder="12"
+          />
+        </div>
+
+        <div class="profile-form__group">
+          <label class="profile-form__label">Preferred format</label>
+          <div class="profile-form__radios">
+            <label class="profile-form__radio-label"><input type="radio" name="format" value="print" checked /> Print</label>
+            <label class="profile-form__radio-label"><input type="radio" name="format" value="ebook" /> E-book</label>
+            <label class="profile-form__radio-label"><input type="radio" name="format" value="audio" /> Audiobook</label>
+          </div>
+        </div>
+
+        <div class="profile-form__actions">
+          <button type="submit" class="btn btn--primary">Save profile</button>
+          <button type="button" class="btn btn--ghost" id="clear-profile-btn">Clear all data</button>
+        </div>
+
+        <div class="profile-form__feedback" id="profile-feedback" hidden></div>
+      </form>
+    </section>
+
+    <section class="profile-section">
+      <h2 class="profile-section__title">Reading goal progress</h2>
+      <div class="goal-progress" id="goal-progress">
+        <div class="goal-progress__bar-bg">
+          <div class="goal-progress__bar-fill" id="goal-bar"></div>
+        </div>
+        <p class="goal-progress__label" id="goal-label">Save your profile to track progress.</p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="js/profile.js"></script>
+</body>
+</html>

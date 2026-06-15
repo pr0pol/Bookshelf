@@ -1,51 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Name</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bookshelf — Find Your Next Read</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/search.css" />
 </head>
 <body>
-
-  <header>
-    <nav>
-      <span class="nav__logo">Project Name</span>
-      <div class="nav__links">
-        <a href="index.html">Search</a>
-        <a href="saved.html">Saved</a>
-      </div>
-      <div class="nav__actions">
-        <span id="nav-user"></span>
-        <button id="logout-btn" type="button">Logout</button>
-      </div>
-    </nav>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="site-header__logo">📚 Bookshelf</a>
+      <nav class="site-nav">
+        <a href="index.html" class="site-nav__link site-nav__link--active">Search</a>
+        <a href="shelves.html" class="site-nav__link">My Shelves</a>
+        <a href="profile.html" class="site-nav__link">Profile</a>
+        <a href="login.html" class="site-nav__link">Sign in</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <main class="main">
+    <section class="hero">
+      <h1 class="hero__title">Find your next read.</h1>
+      <p class="hero__subtitle">Search millions of books and add them to your personal shelves.</p>
 
-    <!-- search / filter form -->
-    <section>
-      <form id="search-form">
-        <!-- add your inputs here (at least 3 different types) -->
-        <button type="submit">Search</button>
+      <form class="search-form" id="search-form" novalidate>
+        <div class="search-form__row">
+          <div class="search-form__field">
+            <label for="search-query" class="search-form__label">Book title or author</label>
+            <input
+              type="text"
+              id="search-query"
+              name="query"
+              class="search-form__input"
+              placeholder="e.g. The Hobbit or Tolkien"
+              minlength="2"
+              required
+            />
+            <span class="search-form__error" id="query-error"></span>
+          </div>
+          <div class="search-form__field search-form__field--narrow">
+            <label for="search-type" class="search-form__label">Search by</label>
+            <select id="search-type" name="type" class="search-form__select">
+              <option value="q">Everything</option>
+              <option value="title">Title</option>
+              <option value="author">Author</option>
+              <option value="subject">Subject</option>
+            </select>
+          </div>
+          <div class="search-form__field search-form__field--narrow">
+            <label for="search-limit" class="search-form__label">Results</label>
+            <select id="search-limit" name="limit" class="search-form__select">
+              <option value="10">10</option>
+              <option value="20" selected>20</option>
+              <option value="40">40</option>
+            </select>
+          </div>
+        </div>
+        <div class="search-form__row search-form__row--filters">
+          <label class="search-form__checkbox-label">
+            <input type="checkbox" id="filter-ebook" name="ebook" class="search-form__checkbox" />
+            E-book available
+          </label>
+          <label class="search-form__checkbox-label">
+            <input type="checkbox" id="filter-cover" name="cover" class="search-form__checkbox" checked />
+            Has cover image
+          </label>
+        </div>
+        <button type="submit" class="btn btn--primary search-form__submit">Search books</button>
       </form>
     </section>
 
-    <!-- loading and error states -->
-    <p id="loading-msg" hidden>Loading…</p>
-    <p id="error-msg" hidden></p>
-
-    <!-- dynamically generated cards land here -->
-    <section>
-      <div id="results-grid"></div>
+    <section class="results-section" id="results-section" aria-live="polite">
+      <div class="loader" id="loader" hidden>
+        <div class="loader__spinner"></div>
+        <p class="loader__text">Searching the library…</p>
+      </div>
+      <p class="error-msg" id="error-msg" hidden></p>
+      <div class="results-meta" id="results-meta" hidden>
+        <p class="results-meta__text" id="results-meta-text"></p>
+      </div>
+      <div class="book-grid" id="book-grid"></div>
     </section>
-
   </main>
 
-  <footer>
-    <!-- footer content -->
-  </footer>
 
   <script type="module" src="js/main.js"></script>
 </body>
