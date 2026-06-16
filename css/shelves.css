@@ -1,0 +1,102 @@
+.shelves-hero {
+  padding: 2.5rem 0 1.5rem;
+}
+
+.shelves-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.4rem;
+}
+
+.shelves-hero__subtitle {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+.shelf-stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.shelf-stat {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.shelf-stat__num {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.shelf-stat__label {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+}
+
+.shelf-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.shelf-tabs {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.shelf-tab {
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: background 0.15s, color 0.15s;
+}
+.shelf-tab:hover { background: var(--color-surface); color: var(--color-text); }
+.shelf-tab--active {
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.shelf-filter__input {
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 0.88rem;
+  width: 220px;
+  font-family: var(--font-body);
+}
+.shelf-filter__input:focus { outline: none; border-color: var(--color-accent); }
+.shelf-filter__input::placeholder { color: var(--color-border); }
+
+.shelf-empty {
+  text-align: center;
+  padding: 4rem 0;
+}
+.shelf-empty__msg { color: var(--color-muted); font-size: 0.95rem; }
+.shelf-empty__msg a { color: var(--color-accent); }
+
+@media (max-width: 600px) {
+  .shelves-hero { padding: 1.5rem 0 1rem; }
+  .shelf-controls { flex-direction: column; align-items: flex-start; }
+  .shelf-filter__input { width: 100%; }
+}
