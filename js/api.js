@@ -1,15 +1,37 @@
-const BASE_URL = ''; // replace with your API base URL
+const BASE_URL = 'https://openlibrary.org';
+const COVER_URL = 'https://covers.openlibrary.org/b/id';
 
-export async function fetchData(endpoint) {
-  // fetch, check response.ok, return response.json()
+
+export async function searchBooks({ query, type = 'q', limit = 20 }) {
+  const params = new URLSearchParams({
+    [type]: query,
+    limit,
+    fields: 'key,title,author_name,first_publish_year,cover_i,subject,ia,ebook_access',
+  });
+
+  const response = await fetch(`${BASE_URL}/search.json?${params}`);
+  if (!response.ok) {
+    throw new Error(`Open Library returned ${response.status}. Please try again.`);
+  }
+
+  const data = await response.json();
+  return data.docs.map(normaliseBook);
 }
 
-// localStorage helpers — import these wherever you need saved state
-export function getSaved() {
-  const raw = localStorage.getItem('savedItems');
-  return raw ? JSON.parse(raw) : [];
+function normaliseBook(doc) {
+  return {
+    id:        doc.key,                          
+    title:     doc.title || 'Unknown title',
+    authors:   doc.author_name || [],
+    year:      doc.first_publish_year || null,
+    coverId:   doc.cover_i || null,
+    subjects:  (doc.subject || []).slice(0, 5),
+    hasEbook:  doc.ebook_access === 'borrowable' || doc.ebook_access === 'public',
+  };
 }
 
-export function setSaved(items) {
-  localStorage.setItem('savedItems', JSON.stringify(items));
+
+export function getCoverUrl(coverId, size = 'M') {
+  if (!coverId) return null;
+  return `${COVER_URL}/${coverId}-${size}.jpg`;
 }
